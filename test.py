@@ -3,13 +3,12 @@
 import sys
 import requests
 import json
+import my_settings
 
-client_id = "cx49ohyd2e"
-client_secret = "OBo7SwStOcVy4lDt9eyMrCUzCDOcR46ruJgv8lKC"
+client_id = my_settings.CLIENT_ID
+client_secret = my_settings.CLIENT_SECRET
 url = 'https://naveropenapi.apigw.ntruss.com/text-summary/v1/summarize'
 
-# filename = str('KsponSpeech_00{0:04d}'.format(996))+str(".wav")
-# data = open('./wav/'+filename, 'rb')
 headers = {
             'Accept': 'application/json;UTF-8',
             'Content-Type': 'application/json;UTF-8',
@@ -28,6 +27,7 @@ data = {
     "summaryCount": 3
   }
 }
+
 response = requests.post(url, headers=headers, data=json.dumps(data).encode('UTF-8'))
 rescode = response.status_code
 if(rescode == 200):
